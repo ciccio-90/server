@@ -1,0 +1,14 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node server.js",
+    "watch": "nodemon server.js"
+  },
+  "private": true,
+  "dependencies": {
+    "express": "4.17.1",
+    "body-parser": "1.19.0",
+    "mssql": "6.2.0"
+  }
+}
