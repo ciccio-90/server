@@ -1,11 +1,13 @@
-const express = require('express');
-const path = require('path');
-const http = require('http');
-const bodyParser = require('body-parser'); 
-const BackendApi = require('./routes/backend-api');
+import * as express from 'express'; 
+import * as path from 'path'; 
+import * as http from 'http'; 
+import * as bodyParser from 'body-parser';
+import { BackendApi } from './routes/backend-api';
 
-class Server { 
-    static bootstrap() { 
+class Server {
+    public app: express.Application; 
+
+    public static bootstrap(): Server { 
         return new Server(); 
     } 
 
@@ -45,9 +47,9 @@ class Server {
 
     routes() { 
         // get router 
-        let router = express.Router();     
+        const router: express.Router = express.Router();     
         // create routes 
-        const api = new BackendApi(); 
+        const api: BackendApi = new BackendApi();
     
         // API
         router.get('/api/mssqlversioninfo', api.getMsSqlVersionInfo.bind(api.getMsSqlVersionInfo));     
