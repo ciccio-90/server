@@ -5,7 +5,7 @@ import * as bodyParser from 'body-parser';
 import { BackendApi } from './routes/backend-api';
 
 export class Server {
-    public app: express.Application; 
+    private _app: express.Application; 
 
     public static bootstrap(): Server { 
         return new Server(); 
@@ -13,7 +13,7 @@ export class Server {
 
     constructor() {
         // create expressjs application 
-        this.app = express(); 
+        this._app = express(); 
         // configure application 
         this.config();     
         // configure routes 
@@ -22,22 +22,22 @@ export class Server {
     
     private config() { 
         // Parsers for POST data 
-        this.app.use(bodyParser.json()); 
-        this.app.use(bodyParser.urlencoded({ extended: false }));     
+        this._app.use(bodyParser.json()); 
+        this._app.use(bodyParser.urlencoded({ extended: false }));     
         // Point static path to public folder 
-        this.app.use(express.static(path.join(__dirname, 'public'))); 
+        this._app.use(express.static(path.join(__dirname, 'public'))); 
      
         /** 
          * Get port from environment and store in Express. 
          */ 
         const port = process.env.PORT || '3000'; 
 
-        this.app.set('port', port); 
+        this._app.set('port', port); 
     
         /** 
          * Create HTTP server. 
          */ 
-        const server = http.createServer(this.app);
+        const server = http.createServer(this._app);
     
         /** 
          * Listen on provided port, on all network interfaces. 
@@ -54,9 +54,9 @@ export class Server {
         // API
         router.get('/api/mssqlversioninfo', api.getMsSqlVersionInfo.bind(api.getMsSqlVersionInfo));     
         // use router middleware 
-        this.app.use(router);     
+        this._app.use(router);     
         // Catch all other routes and return the index file 
-        this.app.get('*', (req, res) => { 
+        this._app.get('*', (req, res) => { 
             res.sendFile(path.join(__dirname, 'public/index.html')); 
         }); 
     }
