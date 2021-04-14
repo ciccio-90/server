@@ -4,7 +4,7 @@ import * as http from 'http';
 import * as bodyParser from 'body-parser';
 import { BackendApi } from './routes/backend-api';
 
-class Server {
+export class Server {
     public app: express.Application; 
 
     public static bootstrap(): Server { 
@@ -20,7 +20,7 @@ class Server {
         this.routes();
     }
     
-    config() { 
+    private config() { 
         // Parsers for POST data 
         this.app.use(bodyParser.json()); 
         this.app.use(bodyParser.urlencoded({ extended: false }));     
@@ -45,7 +45,7 @@ class Server {
         server.listen(port, () => console.log(`API running on localhost:${port}`)); 
     }
 
-    routes() { 
+    private routes() { 
         // get router 
         const router: express.Router = express.Router();     
         // create routes 
