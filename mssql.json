@@ -1,6 +1,9 @@
 {
     "user": "sa",
-    "password": "",
+    "password": "Ciccio_110590",
     "server": "localhost",
-    "database": "msdb"
+    "database": "msdb",
+    "options": {
+        "trustServerCertificate": true
+    }
 }
