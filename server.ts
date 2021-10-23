@@ -1,6 +1,6 @@
 import express from 'express'; 
 import * as path from 'path'; 
-import * as http from 'http'; 
+import * as http from 'http';
 import { BackendApi } from './routes/backend-api';
 
 export class Server {
@@ -19,7 +19,10 @@ export class Server {
         this.routes();
     }
     
-    private config() {    
+    private config() {
+        // Parsers for POST data 
+        this._app.use(express.json()); 
+        this._app.use(express.urlencoded({ extended: false })); 
         // Point static path to public folder 
         this._app.use(express.static(path.join(__dirname, 'public'))); 
      
