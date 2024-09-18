@@ -7,7 +7,7 @@
   },
   "private": true,
   "dependencies": {
-    "express": "4.20.0",
+    "express": "4.21.0",
     "mssql": "11.0.1"
   },
   "devDependencies": {
